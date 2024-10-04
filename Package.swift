@@ -7,11 +7,10 @@
  */
 import PackageDescription
 
-let release = "1.0.0"
-
-let data = try String(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("LIB_CHECKSUM"))
+let release = try String(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("VERSION"))
+let fw_data = try String(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("LIB_CHECKSUM"))
 var frameworks: [String: String] = [:]
-for framework in data.components(separatedBy: "\n").filter { !$0.isEmpty } {
+for framework in fw_data.components(separatedBy: "\n").filter { !$0.isEmpty } {
     frameworks[framework.components(separatedBy: ":").first!] = frameworks[framework.components(separatedBy: ":").last!]
 }
 
